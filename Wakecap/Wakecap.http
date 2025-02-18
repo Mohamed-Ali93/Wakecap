@@ -1,0 +1,6 @@
+@Wakecap_HostAddress = http://localhost:5100
+
+GET {{Wakecap_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
