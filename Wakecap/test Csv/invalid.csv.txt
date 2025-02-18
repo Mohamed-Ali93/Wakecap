@@ -1,0 +1,7 @@
+worker_code,zone_code,assignment_date
+LongWorkerCode123,LongZoneCode123,2025-35-01
+W99999,Z9999,2025-02-01
+W1,InvalidZone,2025-02-01
+W1,Z1,2026-01-01
+W1,Z1,2026-02-01
+W1,Z2,2026-02-01               

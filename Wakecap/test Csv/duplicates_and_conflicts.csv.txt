@@ -1,0 +1,4 @@
+worker_code,zone_code,assignment_date
+W1,Z1,2025-02-01  
+W1,Z1,2025-02-01  
+W1,Z2,2025-02-01  

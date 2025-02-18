@@ -50,6 +50,7 @@ namespace Wakecap.Controllers
                 using (var reader = new StreamReader(file.OpenReadStream()))
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
+                    
                     records = csv.GetRecords<WorkerZoneAssignmentRecord>().ToList();
                 }
             }
@@ -59,7 +60,7 @@ namespace Wakecap.Controllers
                 return BadRequest("Invalid file format");
             }
 
-            if (records.Count > 50_000)
+            if (records.Count > 50000)
             {
                 _logger.LogWarning("File exceeds 50,000 row limit");
                 return BadRequest("Maximum 50,000 rows allowed");
@@ -131,6 +132,8 @@ namespace Wakecap.Controllers
 
         private async Task SaveUploadStatus(string fileName, string status)
         {
+            //TODO: we can save the file in any file storage if required 
+
             await _context.UploadedFiles.AddAsync(new UploadedFile
             {
                 FileName = fileName,

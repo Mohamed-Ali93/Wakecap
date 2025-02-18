@@ -39,6 +39,8 @@ namespace Wakecap.Validators
                 .Select(a => (a.WorkerId, a.EffectiveDate))
                 .ToHashSet();
 
+            var today = DateOnly.FromDateTime(DateTime.Today);
+
             // Track duplicates in the file
             var fileAssignments = new ConcurrentDictionary<(string, DateOnly), bool>();
 
@@ -67,13 +69,13 @@ namespace Wakecap.Validators
                     error.Error["ZoneCode"] = "Zone Code does not exist.";
 
                 // Validate Effective Date
-                if (!DateOnly.TryParseExact(record.assignment_date, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var effectiveDate))
+                if (!DateOnly.TryParseExact(record.assignment_date?.Trim(), "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var effectiveDate))
                     error.Error["EffectiveDate"] = "Invalid date format.";
-                else if (effectiveDate <= DateOnly.FromDateTime( DateTime.Today))
+                else if (effectiveDate <= today)
                     error.Error["EffectiveDate"] = "Effective Date must be in the future.";
 
                 // Check for duplicates in the file (only if date is valid)
-                if (effectiveDate > DateOnly.FromDateTime( DateTime.Today))
+                if (effectiveDate > today)
                 {
                     var assignmentKey = (record.worker_code, effectiveDate);
                     if (!fileAssignments.TryAdd(assignmentKey, true))

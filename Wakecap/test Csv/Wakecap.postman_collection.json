@@ -1,0 +1,41 @@
+{
+	"info": {
+		"_postman_id": "75c210cc-53e2-463b-86e5-4a366b827077",
+		"name": "Wakecap",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42442603"
+	},
+	"item": [
+		{
+			"name": "Upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Ali/Desktop/test Csv/invalid.csv.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:44384/api/Assignment/upload",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44384",
+					"path": [
+						"api",
+						"Assignment",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
